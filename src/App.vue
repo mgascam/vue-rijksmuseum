@@ -1,16 +1,34 @@
 <template>
   <div id="app">
-    <Api />
+    <SearchForm v-on:search="onSearch"
+      :results="results"/>
+    <!-- <Api /> -->
   </div>
 </template>
 
 <script>
-import Api from './components/Api.vue';
+import SearchForm from './components/SearchForm';
+import Api from'./api/Api';
 
 export default {
   name: 'app',
+  created() {
+    this.api = new Api({key: 'ieTAe8ON'});
+  },
+  data() {
+    return {
+      results: []
+    }
+  },
   components: {
-    Api
+    SearchForm
+  },
+  methods: {
+    onSearch: async function(query) {
+      this.results = [];
+      const data = await this.api.search(query);
+      this.results = data;
+    }
   }
 }
 </script>
