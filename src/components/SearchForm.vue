@@ -6,7 +6,7 @@
             action="#" 
             v-on:submit.prevent = "onSubmit">
         <p>
-            <label for="searchTearm">Search: </label>
+            <label for="searchTerm">Search: </label>
             <input
                 id="searchTerm"
                 v-model="searchTerm"
@@ -20,17 +20,13 @@
                 value="Submit">
         </p>
         </form>
-        <div id="results">
-            {{ results }}
-        </div>
     </div>
     
 </template>
 
 <script>
 export default {
-    name: 'Search',
-    props: ['results'],
+    name: 'SearchForm',
     data() {
         return {
             searchTerm: null

@@ -8,7 +8,7 @@ class Api {
         const searchUrl = `${this.host}/${this.language}/collection/?q=${query}&key=${this.key}&format=json`;
         const res = await fetch(searchUrl);
         const data = await res.json();
-        return data.artObjects;
+        return data;
     }
 }
 

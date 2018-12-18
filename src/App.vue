@@ -1,13 +1,13 @@
 <template>
   <div id="app">
-    <SearchForm v-on:search="onSearch"
-      :results="results"/>
-    <!-- <Api /> -->
+    <SearchForm v-on:search="onSearch" />
+    <SearchResults :results="results" />
   </div>
 </template>
 
 <script>
-import SearchForm from './components/SearchForm';
+import SearchForm from './components/SearchForm.vue';
+import SearchResults from './components/SearchResults.vue';
 import Api from'./api/Api';
 
 export default {
@@ -21,13 +21,14 @@ export default {
     }
   },
   components: {
-    SearchForm
+    SearchForm,
+    SearchResults
   },
   methods: {
     onSearch: async function(query) {
       this.results = [];
       const data = await this.api.search(query);
-      this.results = data;
+      this.results = data.artObjects;
     }
   }
 }
